@@ -1,0 +1,13 @@
+{
+  "name": "distributed-average",
+  "version": "0.0.0",
+  "description": "Distributed average",
+  "main": "src/index.js",
+  "repository": "https://github.com/nemanjan00/distributed-average",
+  "author": "Nemanja Nedeljkovic <nemanjan00@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "ioredis": "^5.0.6"
+  }
+}

@@ -7,7 +7,8 @@
   "author": "Nemanja Nedeljkovic <nemanjan00@gmail.com>",
   "scripts": {
     "test": "nyc mocha --reporter spec --timeout 60000 tests/index.js",
-    "lint": "./dev/lint.sh"
+    "lint": "./dev/lint.sh",
+    "dev": "docker-compose --file dev/docker-compose.yml up"
   },
   "husky": {
     "hooks": {

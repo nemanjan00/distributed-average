@@ -1,0 +1,38 @@
+---
+version: '3'
+services:
+  # App
+  app:
+    image: node:current-buster
+    command: yarn watch
+    user: "1000:1000"
+    working_dir: /app
+    volumes:
+      - ../:/app
+
+  # Web
+  reverse-proxy:
+    image: traefik:v2.2
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "127.0.0.1:80:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  redis:
+    image: 'redis:6.0.6'
+    command: redis-server
+    volumes:
+      - './data/redis:/data'
+
+  redis-commander:
+    image: 'rediscommander/redis-commander:latest'
+    command: /redis-commander/docker/entrypoint.sh --folding-char ":"
+    environment:
+      - REDIS_HOST=redis
+    labels:
+      - "traefik.enable=true"
+
+      - "traefik.http.services.redis-commander.loadbalancer.server.port=8081"
+
+      - "traefik.http.routers.redis-commander.rule=Host(`redis-commander.vcap.me`)"

@@ -8,7 +8,8 @@
   "scripts": {
     "test": "nyc mocha --reporter spec --timeout 60000 tests/index.js",
     "lint": "./dev/lint.sh",
-    "dev": "docker-compose --file dev/docker-compose.yml up"
+    "dev": "docker-compose --file dev/docker-compose.yml up",
+    "watch": "nodemon example"
   },
   "husky": {
     "hooks": {
@@ -24,6 +25,7 @@
   "devDependencies": {
     "eslint": "^8.18.0",
     "mocha": "^10.0.0",
+    "nodemon": "^2.0.18",
     "nyc": "^15.1.0"
   }
 }

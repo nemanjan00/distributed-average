@@ -18,6 +18,10 @@ module.exports = (url) => {
 
 		getValue: (name) => {
 			return client.get(name);
+		},
+
+		setValue: (name, num) => {
+			return client.set(name,  num);
 		}
 	};
 

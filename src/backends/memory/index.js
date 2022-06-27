@@ -38,6 +38,10 @@ module.exports = () => {
 
 		getValue: async (name) => {
 			return average._value[name];
+		},
+
+		setValue: async (name, num) => {
+			return average._value[name] = num;
 		}
 	};
 

@@ -1,6 +1,6 @@
 {
   "name": "distributed-average",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Distributed average",
   "main": "src/index.js",
   "repository": "https://github.com/nemanjan00/distributed-average",

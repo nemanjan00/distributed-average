@@ -1,48 +1,14 @@
-module.exports = () => {
-	const average = {
-		_coefficient: undefined,
-		_value: undefined,
-		_count: 0,
+const URL = require("url").URL;
 
-		setCoefficient: async (num) => {
-			average._coefficient = num;
-		},
+const protocols = {
+	redis: require("./backends/redis"),
+	memory: require("./backends/memory")
+};
 
-		setDefaultValue: async (num) => {
-			if(average._value === undefined) {
-				average._value = num;
-				average._count = 1;
-			}
-		},
+module.exports = (url) => {
+	const parsedUrl = new URL(url);
 
-		add: async (num) => {
-			if(average._value === undefined) {
-				return await average.setDefaultValue(num);
-			}
+	const protocol = parsedUrl.protocol.split(":").join("");
 
-			if(average._coefficient) {
-				average._value = (
-					average._value * (average._coefficient - 1) + num
-				) / average._coefficient;
-
-				console.log(num, average._value);
-
-				return average._value;
-			}
-
-			average._count++;
-
-			average._value = (
-				average._value * (average._count - 1) + num
-			) / average._count;
-
-			return average._value;
-		},
-
-		getValue: async () => {
-			return average._value;
-		}
-	};
-
-	return average;
+	return (protocols[protocol] || protocols["memory"])(url);
 };

@@ -22,6 +22,10 @@ module.exports = (url) => {
 
 		setValue: (name, num) => {
 			return client.set(name,  num);
+		},
+
+		getMultiple: (names) => {
+			return client.mget(...names);
 		}
 	};
 

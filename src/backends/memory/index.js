@@ -37,11 +37,17 @@ module.exports = () => {
 		},
 
 		getValue: async (name) => {
-			return average._value[name];
+			return average._value[name] || null;
 		},
 
 		setValue: async (name, num) => {
 			return average._value[name] = num;
+		},
+
+		getMultiple: async (names) => {
+			return names.map(name => {
+				return average._value[name] || null;
+			});
 		}
 	};
 
